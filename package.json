@@ -1,7 +1,7 @@
 {
   "name": "hidash",
   "version": "0.0.1",
-  "description": "Yet another extension of lodash.",
+  "description": "Yet another mixin extension of lodash, with join product, toDictionary and filtermap",
   "main": "hidash.js",
   "directories": {
     "test": "test"
