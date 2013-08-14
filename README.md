@@ -1,7 +1,5 @@
----
-layout: base
----
 # Hidash 
+A mixin extension of lodash
 
 _Source: [hidash.js](/hidash.js)_
 
