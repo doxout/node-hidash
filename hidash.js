@@ -65,27 +65,31 @@ function identity(x) { return x; }
 
 
 /**
- * Convert an array of items to a dictionary.
+ * Map an array (or a dictionary) of items to a dictionary.
  * 
  * @type {Function}
+ * @alias toObject,toDictionary
  * @param {Array} array - The array to convert
- * @param {Function,String} keyselector - Either function (item, k) => key or just property name
- * @param {Function,String} valselector - Either function (item, k) => key, property name or undefined. If not specified, the array item is used.
+ * @param {Function,String} keyfn - Either function (item, key) => newkey or just property name. If unspecified, the key remains the same.
+ * @param {Function,String} valfn - Either function (item, kew) => newkey, property name or undefined. If unspecified, the value remains the same
  * @return {*} A dictionary.
  */
-function toDictionary(array, keyselector, valselector) {
+function omap(array, keyfn, valfn) {
     var o = {};
-    if (typeof(keyselector) == 'string')
-        keyselector = stringSelector(keyselector);
-    if (typeof(valselector) == 'string')
-        valselector = stringSelector(valselector);
-    if (!valselector) 
-        valselector = identity;
+    if (typeof(keyfn) == 'string')
+        keyfn = stringSelector(keyfn);
+    if (typeof(valfn) == 'string')
+        valfn = stringSelector(valfn);
+    if (!keyfn)
+        keyfn = function(el, k) { return k; }
+    if (!valfn) 
+        valfn = identity;
     return _(array).reduce(function(acc, el, k) {
-        acc[keyselector(el, k)] = valselector(el, k);
+        acc[keyfn(el, k)] = valfn(el, k);
         return acc;
     }, {});
 }
-self.toDictionary = self.toObject = toDictionary;
+self.toDictionary = self.toObject = self.omap = omap;
+
 
 _.mixin(self);

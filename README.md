@@ -7,7 +7,7 @@ _Source: [hidash.js](/hidash.js)_
 
 - <a name="toc_filtermaparray-f"></a>[filtermap](#filtermaparray-f)
 - <a name="toc_productarray-other-f"></a>[product](#productarray-other-f)
-- <a name="toc_todictionaryarray-keyselector-valselector"></a>[toDictionary](#todictionaryarray-keyselector-valselector)
+- <a name="toc_omaparray-keyfn-valfn"></a>[omap](#omaparray-keyfn-valfn)
 
 # filtermap(array, f)
 
@@ -48,15 +48,15 @@ If the function returns undefined, the item will be filtered out.
 
 <sub>Go: [TOC](#tableofcontents)</sub>
 
-# toDictionary(array, keyselector, valselector)
+# omap(array, keyfn, valfn)
 
-> Convert an array of items to a dictionary.
+> Map an array (or a dictionary) of items to a dictionary.
 
 **Parameters:**
 
 - `{Array} array` - The array to convert
-- `{Function | String} keyselector` - Either function (item, k) =&gt; key or just property name
-- `{Function | String} valselector` - Either function (item, k) =&gt; key, property name or undefined. If not specified, the array item is used.
+- `{Function | String} keyfn` - Either function (item, key) =&gt; newkey or just property name. If unspecified, the key remains the same.
+- `{Function | String} valfn` - Either function (item, kew) =&gt; newkey, property name or undefined. If unspecified, the value remains the same
 
 **Return:**
 

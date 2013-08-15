@@ -29,19 +29,22 @@ t.test('product', function(t) {
     t.end(0);        
 });
 
-t.test('toDictionary', function(t) {
+t.test('omap', function(t) {
 
-    var dict1 = items.toDictionary('a', 'b');
+    var dict1 = items.omap('a', 'b');
     t.deepEquals(dict1.value(), {1:2, 2:3, 3:4, 4:5});
 
-    var dict2 = items.toDictionary('a');
+    var dict2 = items.omap('a');
     t.deepEquals(dict2.value()[1], {a: 1, b:2});
 
-    var dict3 = items.toDictionary(function(x) {
+    var dict3 = items.omap(function(x) {
         return x.a + '+' + x.b;
     }, function(x) { return x.a + x.b });
 
-    t.equals(dict3.value()['1+2'], 3);
+
+    var dict4 = items.omap(null, 'b');
+
+    t.equals(dict4.value()['0'], 2);
 
     t.end()
 });
